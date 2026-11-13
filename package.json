@@ -1,0 +1,9 @@
+﻿{
+  "name": "amauta-v1",
+  "version": "1.0.0",
+  "description": "Amauta v1.0 - El Origen - El Agente Biografico Investigador",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

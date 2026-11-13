@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amauta v1.0 · El Origen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>AMAUTA</h1>
+        <p>El Agente Biográfico Investigador</p>
+        <span class="version-tag">v1.0 · El Origen</span>
+    </div>
+
+    <!-- PANTALLA 1: REGISTRO -->
+    <div id="step-registro" class="step active">
+        <h2 class="step-title">Identifícate</h2>
+        <p class="step-desc">Para garantizar la responsabilidad histórica de tu relato, validaremos tu correo electrónico.</p>
+
+        <div class="form-group">
+            <label>Nombre y Apellido</label>
+            <input type="text" id="reg-nombre" placeholder="Ej: Henry Inojosa">
+        </div>
+        <div class="form-group">
+            <label>Número de Teléfono</label>
+            <input type="text" id="reg-telefono" placeholder="Ej: 04141234567">
+        </div>
+        <div class="form-group">
+            <label>Correo Electrónico</label>
+            <input type="email" id="reg-email" placeholder="Ej: correo@ejemplo.com">
+        </div>
+        <button class="btn btn-primary" id="btnSolicitarPin">Comenzar el Viaje</button>
+        <div class="status-msg" id="status-registro"></div>
+    </div>
+
+    <!-- PANTALLA 2: VALIDAR PIN -->
+    <div id="step-pin" class="step">
+        <h2 class="step-title">Verifica tu Correo</h2>
+        <p class="step-desc">Amauta ha enviado un código de 4 dígitos a tu correo electrónico. Ingrésalo aquí.</p>
+        <div class="form-group">
+            <label>Código PIN</label>
+            <input type="text" id="pin-input" maxlength="4" placeholder="1234" class="pin-input">
+        </div>
+        <button class="btn btn-primary" id="btnValidarPin">Validar Código</button>
+        <div class="status-msg" id="status-pin"></div>
+    </div>
+
+    <!-- PANTALLA 3: LOS 4 MOMENTOS -->
+    <div id="step-formulario" class="step">
+
+        <h2 class="section-title">Momento I: La Semilla (Niñez y Raíces)</h2>
+        <div class="form-group">
+            <label>Edad</label>
+            <input type="number" id="m1-edad" placeholder="Ej: 45">
+        </div>
+        <div class="form-group">
+            <label>Origen General</label>
+            <select id="m1-origen-gral">
+                <option value="">Selecciona...</option>
+                <option value="Ciudad">Ciudad / Área Urbana</option>
+                <option value="Campo">Campo / Área Rural</option>
+            </select>
+        </div>
+        <div class="form-group" id="div-origen-ciudad" style="display:none;">
+            <label>Si es Ciudad, ¿dónde creciste?</label>
+            <select id="m1-origen-ciudad">
+                <option value="Metrópolis">Metrópolis (Caracas, Maracaibo...)</option>
+                <option value="Barrio popular">Barrio popular</option>
+                <option value="Urbanización">Urbanización</option>
+            </select>
+        </div>
+        <div class="form-group" id="div-origen-campo" style="display:none;">
+            <label>Si es Campo, ¿qué paisaje te vio crecer?</label>
+            <select id="m1-origen-campo">
+                <option value="Los Llanos">Los Llanos</option>
+                <option value="Montaña">Zona de Montaña</option>
+                <option value="Selvática">Zona Selvática</option>
+                <option value="Fronteriza">Zona Fronteriza</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>¿Quién te crió o marcó tu infancia?</label>
+            <select id="m1-familia">
+                <option value="Abuelos">Mis abuelos</option>
+                <option value="Padres">Mis padres</option>
+                <option value="Madre soltera">Madre/Padre soltero(a)</option>
+                <option value="Otro">Otro familiar</option>
+            </select>
+        </div>
+
+        <h2 class="section-title">Momento II: El Viaje (Trayectoria)</h2>
+        <label class="section-subtitle">Hitos de mi vida (Selecciona los que apliquen):</label>
+        <div class="checkbox-grid">
+            <label class="check-card">
+                <input type="checkbox" name="m2-hitos" value="Formé mi familia" data-expansion="¿Cómo fue ese momento?">
+                <span>Formé mi familia</span>
+            </label>
+            <div class="expansion-box"><textarea placeholder="¿Cómo fue ese momento?"></textarea></div>
+
+            <label class="check-card">
+                <input type="checkbox" name="m2-hitos" value="Inicié mi vida laboral" data-expansion="¿Cuál fue tu primer trabajo?">
+                <span>Inicié mi vida laboral</span>
+            </label>
+            <div class="expansion-box"><textarea placeholder="¿Cuál fue tu primer trabajo?"></textarea></div>
+
+            <label class="check-card">
+                <input type="checkbox" name="m2-hitos" value="Migré" data-expansion="¿A dónde fuiste y qué te motivó?">
+                <span>Migré (interna o externa)</span>
+            </label>
+            <div class="expansion-box"><textarea placeholder="¿A dónde fuiste y qué te motivó?"></textarea></div>
+        </div>
+
+        <h3 class="subsection-title">El Árbol de Vida (Trayectoria Profunda)</h3>
+        <p class="section-desc">Añade aquí tus migraciones, trabajos, luchas o experiencias inolvidables. Cada tarjeta es un capítulo de tu historia.</p>
+
+        <div id="arbol-container"></div>
+        <button type="button" class="btn-add-tree" id="btnAddTree">+ Añadir una etapa o experiencia</button>
+
+        <h2 class="section-title">Momento III: La Sabiduría (Aprendizajes)</h2>
+        <label class="section-subtitle">Valores que definen mi camino:</label>
+        <div class="checkbox-grid">
+            <label class="check-card"><input type="checkbox" name="m3-valores" value="Resiliencia"><span>Resiliencia</span></label>
+            <label class="check-card"><input type="checkbox" name="m3-valores" value="Solidaridad"><span>Solidaridad</span></label>
+            <label class="check-card"><input type="checkbox" name="m3-valores" value="Fe"><span>Fe / Espiritualidad</span></label>
+            <label class="check-card"><input type="checkbox" name="m3-valores" value="Trabajo duro"><span>Trabajo duro</span></label>
+            <label class="check-card"><input type="checkbox" name="m3-valores" value="Liderazgo"><span>Liderazgo comunitario</span></label>
+        </div>
+        <div class="form-group" style="margin-top: 20px;">
+            <label>¿Quién fue tu principal referente de vida?</label>
+            <input type="text" id="m3-referentes" placeholder="Ej: Mi maestro de la infancia, mi abuela Eulogia...">
+        </div>
+
+        <h2 class="section-title">Momento IV: El Legado (Futuro)</h2>
+        <label class="section-subtitle">¿Qué te motiva a estar aquí hoy?</label>
+        <div class="checkbox-grid">
+            <label class="check-card"><input type="checkbox" name="m4-motivacion" value="Formalizar saberes"><span>Formalizar mis saberes</span></label>
+            <label class="check-card"><input type="checkbox" name="m4-motivacion" value="Mejorar calidad de vida"><span>Mejorar mi calidad de vida</span></label>
+            <label class="check-card"><input type="checkbox" name="m4-motivacion" value="Ser ejemplo"><span>Ser ejemplo para mi familia</span></label>
+            <label class="check-card"><input type="checkbox" name="m4-motivacion" value="Contribuir"><span>Contribuir a mi comunidad</span></label>
+        </div>
+
+        <h3 class="subsection-title">Fase Académica (Portafolio)</h3>
+        <div class="form-group">
+            <label>Línea de Investigación</label>
+            <input type="text" id="m4-linea" placeholder="Ej: La Tecnoeducación, Pedagogía Crítica...">
+        </div>
+        <div class="form-group">
+            <label>Título al que aspiras</label>
+            <input type="text" id="m4-titulo" placeholder="Ej: Licenciado en Educación">
+        </div>
+        <div class="form-group">
+            <label>Breve descripción de tu Portafolio o Evidencias</label>
+            <textarea id="m4-portafolio" rows="3" placeholder="Menciona los proyectos, herramientas o certificados que tienes..."></textarea>
+        </div>
+        <div class="form-group">
+            <label>Mi Voz (Espacio Libre)</label>
+            <textarea id="m4-voz" rows="4" placeholder="¿Hay algo más que quieras agregar a tu historia?"></textarea>
+        </div>
+
+        <button class="btn btn-gold" id="btnGenerar">✨ Invocar a Amauta (Generar Texto)</button>
+        <div class="loader" id="loader"></div>
+        <div class="status-msg" id="status-generar"></div>
+    </div>
+
+    <!-- PANTALLA 4: RESULTADO -->
+    <div id="step-resultado" class="step">
+        <h2 class="step-title">Tu Autobiografía (Amauta v1.0)</h2>
+        <p class="step-desc">Amauta ha entretejido tu relato. Léelo con calma. Si estás conforme, guárdalo en nuestro archivo histórico.</p>
+
+        <div class="result-box" id="texto-final"></div>
+
+        <button class="btn btn-primary" id="btnGuardar">💾 Guardar en el Archivo Histórico</button>
+        <button class="btn btn-secondary" id="btnReiniciar">Volver a empezar</button>
+        <div class="status-msg" id="status-guardar"></div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
